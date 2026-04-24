@@ -1,0 +1,28 @@
+---
+description: ETHGlobal Open Agents hackathon rules and constraints
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Hackathon Rules
+
+- All code must be new (written after April 24, 2026)
+- Working demo required (2-4 min video)
+- Max 3 sponsor prize applications
+- Public GitHub repo with README
+- Document AI tool usage (which files/features were AI-assisted)
+- Commit early and often — judges check git history
+
+# Judging Criteria (All Sponsors)
+- Does it work?
+- Real utility over novelty
+- Depth of sponsor integration
+- Code quality and documentation
+- Clear demo video
+
+# Sponsor Targets
+1. Gensyn (AXL) — P2P agent communication
+2. KeeperHub — on-chain execution layer
+3. x402 — HTTP 402 micropayments
+4. 0G — decentralized storage and compute
+5. Uniswap v4 — custom swap hooks

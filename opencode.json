@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "keeperhub": {
+      "type": "remote",
+      "url": "https://app.keeperhub.com/mcp",
+      "enabled": true
+    }
+  }
+}

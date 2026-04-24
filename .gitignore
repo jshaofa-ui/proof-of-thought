@@ -1,0 +1,30 @@
+node_modules/
+.env
+.DS_Store
+__pycache__/
+*.py[cod]
+dist/
+build/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+.ruff_cache/
+*.egg-info/
+
+# AXL node binaries and keys (built locally)
+axl-node/
+axl-src/
+*.pem
+
+# Foundry
+cache/
+out/
+broadcast/
+
+# Devcontainer scratch deps
+.devcontainer/hackmoney-tools/node_modules/
+
+# IDE
+.local/
+*.log

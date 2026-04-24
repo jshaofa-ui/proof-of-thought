@@ -1,0 +1,54 @@
+---
+description: Sponsor technology guidance for Gensyn AXL, KeeperHub, x402, 0G, and Uniswap
+globs: ["src/**", "**/*.ts", "**/*.py", "**/*.sol"]
+alwaysApply: false
+---
+
+# Gensyn AXL
+
+AXL is a P2P network node. Your app talks to localhost:9002 via HTTP.
+
+Key endpoints:
+- POST /send — send message to a peer (by their public key)
+- GET /recv — receive pending messages
+- GET /topology — see connected peers
+- /mcp/* — built-in MCP router for structured agent communication
+- /a2a/* — built-in A2A server for agent-to-agent protocols
+
+MUST demonstrate communication across SEPARATE AXL nodes (not in-process).
+
+# KeeperHub
+
+Execution layer for on-chain operations. Connect via MCP server or CLI.
+- MCP: HTTP-based MCP server at https://mcp.keeperhub.com/sse
+- CLI: `kh` command (install via homebrew: `brew install KeeperHub/tap/kh`)
+- Supports x402 and MPP payment protocols
+- Provides: retry logic, gas optimization, MEV protection, audit trails
+
+# x402 Protocol
+
+HTTP 402 payment flow:
+1. Client requests paid resource
+2. Server returns 402 with PAYMENT-REQUIRED header (amount, asset, payTo, chain)
+3. Client signs payment on-chain (USDC on Base)
+4. Client retries with X-PAYMENT header containing signed proof
+5. Server verifies payment and returns resource
+
+Bazaar discovery: GET /discovery/resources from facilitator URL
+
+# 0G
+
+Decentralized AI infrastructure — storage and compute.
+- Storage: upload/download via `@0gfoundation/0g-ts-sdk`
+- Compute: serving broker via `@0glabs/0g-serving-broker`
+- Testnet RPC: https://evmrpc-testnet.0g.ai
+- Docs: https://docs.0g.ai
+
+# Uniswap v4
+
+Custom hook development for on-chain swap logic.
+- SDKs: `@uniswap/v4-sdk`, `@uniswap/sdk-core`
+- Solidity: use Foundry (`forge build`, `forge test`)
+- v4 core: https://github.com/Uniswap/v4-core
+- v4 periphery: https://github.com/Uniswap/v4-periphery
+- Hooks run custom logic before/after swaps, liquidity changes, etc.
