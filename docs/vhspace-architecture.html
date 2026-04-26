@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proof of Thought — Architecture Diagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #020617;
+      min-height: 100vh;
+      padding: 2rem;
+      color: white;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .header { margin-bottom: 2rem; }
+    .header-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+    .pulse-dot { width: 12px; height: 12px; background: #22d3ee; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; }
+    .subtitle { color: #94a3b8; font-size: 0.875rem; margin-left: 1.75rem; }
+    .diagram-container {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 1rem;
+      border: 1px solid #1e293b;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+    svg { width: 100%; min-width: 1100px; display: block; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .card { background: rgba(15, 23, 42, 0.5); border-radius: 0.75rem; border: 1px solid #1e293b; padding: 1.25rem; }
+    .card-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .card-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .card-dot.cyan { background: #22d3ee; }
+    .card-dot.emerald { background: #34d399; }
+    .card-dot.violet { background: #a78bfa; }
+    .card-dot.amber { background: #fbbf24; }
+    .card-dot.rose { background: #fb7185; }
+    .card-dot.orange { background: #fb923c; }
+    .card h3 { font-size: 0.875rem; font-weight: 600; }
+    .card ul { list-style: none; color: #94a3b8; font-size: 0.75rem; }
+    .card li { margin-bottom: 0.375rem; }
+    .footer { text-align: center; margin-top: 1.5rem; color: #475569; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-row">
+        <div class="pulse-dot"></div>
+        <h1>Proof of Thought — Architecture</h1>
+      </div>
+      <p class="subtitle">Multi-model TEE-verified AI consensus protocol • ETHGlobal Open Agents 2026</p>
+    </div>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1100 820">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+          </marker>
+          <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee" />
+          </marker>
+          <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#34d399" />
+          </marker>
+          <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24" />
+          </marker>
+          <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- ================================================================== -->
+        <!-- 0G COMPUTE BOUNDARY (Amber/Cloud)                                  -->
+        <!-- ================================================================== -->
+        <rect x="340" y="30" width="420" height="300" rx="12" fill="rgba(251, 191, 36, 0.04)" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+        <text x="355" y="50" fill="#fbbf24" font-size="10" font-weight="600">0G Compute — TEE Inference</text>
+
+        <!-- Agent Alpha — Qwen 3.6-Plus -->
+        <rect x="370" y="70" width="120" height="80" rx="6" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="430" y="95" fill="white" font-size="11" font-weight="600" text-anchor="middle">Agent Alpha</text>
+        <text x="430" y="112" fill="#94a3b8" font-size="9" text-anchor="middle">Qwen 3.6-Plus</text>
+        <text x="430" y="128" fill="#94a3b8" font-size="8" text-anchor="middle">Intel TDX Enclave</text>
+        <text x="430" y="142" fill="#34d399" font-size="8" text-anchor="middle">TEE Sig ✓</text>
+
+        <!-- Agent Beta — DeepSeek V3 -->
+        <rect x="510" y="70" width="120" height="80" rx="6" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="570" y="95" fill="white" font-size="11" font-weight="600" text-anchor="middle">Agent Beta</text>
+        <text x="570" y="112" fill="#94a3b8" font-size="9" text-anchor="middle">DeepSeek Chat V3</text>
+        <text x="570" y="128" fill="#94a3b8" font-size="8" text-anchor="middle">Intel TDX Enclave</text>
+        <text x="570" y="142" fill="#34d399" font-size="8" text-anchor="middle">TEE Sig ✓</text>
+
+        <!-- Agent Gamma — GLM-5 (Stretch) -->
+        <rect x="650" y="70" width="120" height="80" rx="6" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="710" y="95" fill="white" font-size="11" font-weight="600" text-anchor="middle">Agent Gamma</text>
+        <text x="710" y="112" fill="#94a3b8" font-size="9" text-anchor="middle">GLM-5-FP8 (744B)</text>
+        <text x="710" y="128" fill="#94a3b8" font-size="8" text-anchor="middle">NVIDIA H200 TEE</text>
+        <text x="710" y="142" fill="#fb923c" font-size="8" text-anchor="middle">TEE Sig ✓ (stretch)</text>
+
+        <!-- 0G Storage -->
+        <rect x="370" y="180" width="160" height="60" rx="6" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="450" y="205" fill="white" font-size="11" font-weight="600" text-anchor="middle">0G Storage</text>
+        <text x="450" y="222" fill="#94a3b8" font-size="9" text-anchor="middle">KV Store + File Storage</text>
+
+        <!-- TeeTLS Gateway -->
+        <rect x="580" y="180" width="160" height="60" rx="6" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="660" y="205" fill="white" font-size="11" font-weight="600" text-anchor="middle">TeeTLS Gateway</text>
+        <text x="660" y="222" fill="#94a3b8" font-size="9" text-anchor="middle">Authentic API Routing</text>
+
+        <!-- Arrows from Agents to Storage -->
+        <line x1="430" y1="150" x2="430" y2="178" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="570" y1="150" x2="570" y2="178" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="710" y1="150" x2="710" y2="178" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+        <!-- Arrows from Agents to TeeTLS -->
+        <line x1="490" y1="110" x2="578" y2="200" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="630" y1="110" x2="652" y2="178" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,3"/>
+
+        <!-- ================================================================== -->
+        <!-- AXL P2P NETWORK BOUNDARY (Orange/Message Bus)                      -->
+        <!-- ================================================================== -->
+        <rect x="30" y="350" width="340" height="200" rx="12" fill="rgba(251, 146, 60, 0.04)" stroke="#fb923c" stroke-width="1" stroke-dasharray="8,4"/>
+        <text x="45" y="370" fill="#fb923c" font-size="10" font-weight="600">Gensyn AXL — P2P Network</text>
+
+        <!-- AXL Node A -->
+        <rect x="60" y="390" width="120" height="70" rx="6" fill="rgba(251, 146, 60, 0.3)" stroke="#fb923c" stroke-width="1.5"/>
+        <text x="120" y="415" fill="white" font-size="11" font-weight="600" text-anchor="middle">AXL Node A</text>
+        <text x="120" y="432" fill="#94a3b8" font-size="9" text-anchor="middle">Agent Alpha</text>
+        <text x="120" y="448" fill="#94a3b8" font-size="8" text-anchor="middle">port 9002</text>
+
+        <!-- AXL Node B -->
+        <rect x="210" y="390" width="120" height="70" rx="6" fill="rgba(251, 146, 60, 0.3)" stroke="#fb923c" stroke-width="1.5"/>
+        <text x="270" y="415" fill="white" font-size="11" font-weight="600" text-anchor="middle">AXL Node B</text>
+        <text x="270" y="432" fill="#94a3b8" font-size="9" text-anchor="middle">Agent Beta</text>
+        <text x="270" y="448" fill="#94a3b8" font-size="8" text-anchor="middle">port 9003</text>
+
+        <!-- GossipSub -->
+        <rect x="100" y="490" width="160" height="40" rx="6" fill="rgba(251, 146, 60, 0.2)" stroke="#fb923c" stroke-width="1"/>
+        <text x="180" y="514" fill="#fb923c" font-size="10" font-weight="600" text-anchor="middle">GossipSub + MCP Router</text>
+
+        <!-- Arrow between nodes -->
+        <line x1="180" y1="425" x2="208" y2="425" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+        <text x="194" y="419" fill="#94a3b8" font-size="8" text-anchor="middle">P2P</text>
+
+        <!-- Arrows to GossipSub -->
+        <line x1="120" y1="460" x2="148" y2="488" stroke="#fb923c" stroke-width="1" marker-end="url(#arrow-amber)"/>
+        <line x1="270" y1="460" x2="242" y2="488" stroke="#fb923c" stroke-width="1" marker-end="url(#arrow-amber)"/>
+
+        <!-- ================================================================== -->
+        <!-- CONSENSUS ENGINE (Emerald/Backend)                                 -->
+        <!-- ================================================================== -->
+        <rect x="400" y="350" width="280" height="120" rx="8" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1.5"/>
+        <text x="540" y="380" fill="white" font-size="12" font-weight="700" text-anchor="middle">PoT Consensus Engine</text>
+        <text x="540" y="400" fill="#94a3b8" font-size="9" text-anchor="middle">Collect TEE-signed responses</text>
+        <text x="540" y="416" fill="#94a3b8" font-size="9" text-anchor="middle">Extract claims → Cross-reference → Score</text>
+        <text x="540" y="432" fill="#94a3b8" font-size="9" text-anchor="middle">Produce PoT Report with proof chain</text>
+        <text x="540" y="456" fill="#34d399" font-size="8" text-anchor="middle">agreement_score: 0.0 — 1.0</text>
+
+        <!-- Arrows from 0G Compute to Consensus -->
+        <line x1="450" y1="240" x2="450" y2="348" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+        <line x1="660" y1="240" x2="630" y2="348" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+        <text x="460" y="295" fill="#94a3b8" font-size="8">TEE responses</text>
+
+        <!-- Arrow from AXL to Consensus -->
+        <line x1="370" y1="425" x2="398" y2="425" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+        <text x="384" y="419" fill="#94a3b8" font-size="8">P2P</text>
+
+        <!-- ================================================================== -->
+        <!-- x402 COMMERCE + KEEPERHUB (Rose/Security)                          -->
+        <!-- ================================================================== -->
+        <rect x="720" y="350" width="200" height="120" rx="8" fill="rgba(136, 19, 55, 0.4)" stroke="#fb7185" stroke-width="1.5"/>
+        <text x="820" y="380" fill="white" font-size="12" font-weight="700" text-anchor="middle">x402 Commerce</text>
+        <text x="820" y="400" fill="#94a3b8" font-size="9" text-anchor="middle">Pay-per-report micropayments</text>
+        <text x="820" y="416" fill="#94a3b8" font-size="9" text-anchor="middle">USDC on Base Sepolia</text>
+        <text x="820" y="432" fill="#94a3b8" font-size="9" text-anchor="middle">KeeperHub audit trails</text>
+        <text x="820" y="456" fill="#fb7185" font-size="8" text-anchor="middle">TEE hash refs in receipts</text>
+
+        <!-- Arrow from Consensus to Commerce -->
+        <line x1="680" y1="410" x2="718" y2="410" stroke="#fb7185" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+        <text x="699" y="404" fill="#94a3b8" font-size="8">Report</text>
+
+        <!-- ================================================================== -->
+        <!-- WEB DASHBOARD (Cyan/Frontend)                                      -->
+        <!-- ================================================================== -->
+        <rect x="30" y="600" width="340" height="180" rx="8" fill="rgba(8, 51, 68, 0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+        <text x="200" y="630" fill="white" font-size="12" font-weight="700" text-anchor="middle">Web Dashboard</text>
+        <text x="200" y="650" fill="#94a3b8" font-size="9" text-anchor="middle">Next.js 14 + Tailwind CSS + shadcn/ui</text>
+
+        <!-- Dashboard Panels -->
+        <rect x="50" y="670" width="100" height="30" rx="4" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="100" y="690" fill="#22d3ee" font-size="9" text-anchor="middle">Agent Network</text>
+
+        <rect x="160" y="670" width="100" height="30" rx="4" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="210" y="690" fill="#22d3ee" font-size="9" text-anchor="middle">Deliberation</text>
+
+        <rect x="270" y="670" width="80" height="30" rx="4" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="310" y="690" fill="#22d3ee" font-size="9" text-anchor="middle">Consensus</text>
+
+        <rect x="50" y="710" width="100" height="30" rx="4" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="100" y="730" fill="#22d3ee" font-size="9" text-anchor="middle">PoT Report</text>
+
+        <rect x="160" y="710" width="100" height="30" rx="4" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="210" y="730" fill="#22d3ee" font-size="9" text-anchor="middle">Commerce</text>
+
+        <rect x="270" y="710" width="80" height="30" rx="4" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="310" y="730" fill="#22d3ee" font-size="9" text-anchor="middle">TEE Badges</text>
+
+        <!-- Arrow from AXL to Dashboard -->
+        <line x1="200" y1="550" x2="200" y2="598" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+        <!-- Arrow from Consensus to Dashboard -->
+        <line x1="400" y1="470" x2="200" y2="598" stroke="#22d3ee" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- Arrow from Commerce to Dashboard -->
+        <line x1="720" y1="470" x2="310" y2="598" stroke="#22d3ee" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- ================================================================== -->
+        <!-- QUESTION INPUT (External)                                          -->
+        <!-- ================================================================== -->
+        <rect x="480" y="600" width="160" height="60" rx="6" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="560" y="625" fill="white" font-size="11" font-weight="600" text-anchor="middle">Query Input</text>
+        <text x="560" y="642" fill="#94a3b8" font-size="9" text-anchor="middle">"Risks of lending ETH on Aave?"</text>
+
+        <!-- Arrow from Query to AXL -->
+        <line x1="560" y1="600" x2="200" y2="550" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <text x="430" y="575" fill="#94a3b8" font-size="8">POST /send</text>
+
+        <!-- ================================================================== -->
+        <!-- PoT REPORT OUTPUT (Violet/Database)                                -->
+        <!-- ================================================================== -->
+        <rect x="720" y="600" width="200" height="100" rx="8" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="820" y="630" fill="white" font-size="12" font-weight="700" text-anchor="middle">PoT Report</text>
+        <text x="820" y="650" fill="#94a3b8" font-size="9" text-anchor="middle">Consensus score + proof chain</text>
+        <text x="820" y="666" fill="#94a3b8" font-size="9" text-anchor="middle">Converged claims + divergences</text>
+        <text x="820" y="682" fill="#94a3b8" font-size="9" text-anchor="middle">TEE proof hashes</text>
+        <text x="820" y="700" fill="#a78bfa" font-size="8" text-anchor="middle">stored: 0g://root_hash</text>
+
+        <!-- Arrow from Consensus to Report -->
+        <line x1="680" y1="410" x2="820" y2="598" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+        <!-- Arrow from 0G Storage to Report -->
+        <line x1="450" y1="240" x2="820" y2="598" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3"/>
+
+        <!-- ================================================================== -->
+        <!-- LEGEND                                                             -->
+        <!-- ================================================================== -->
+        <text x="950" y="50" fill="white" font-size="10" font-weight="600">Legend</text>
+        <rect x="950" y="58" width="16" height="10" rx="2" fill="rgba(8, 51, 68, 0.4)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="972" y="66" fill="#94a3b8" font-size="8">Frontend</text>
+        <rect x="950" y="72" width="16" height="10" rx="2" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1"/>
+        <text x="972" y="80" fill="#94a3b8" font-size="8">Backend</text>
+        <rect x="950" y="86" width="16" height="10" rx="2" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1"/>
+        <text x="972" y="94" fill="#94a3b8" font-size="8">Cloud / 0G</text>
+        <rect x="950" y="100" width="16" height="10" rx="2" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="972" y="108" fill="#94a3b8" font-size="8">Storage</text>
+        <rect x="950" y="114" width="16" height="10" rx="2" fill="rgba(136, 19, 55, 0.4)" stroke="#fb7185" stroke-width="1"/>
+        <text x="972" y="122" fill="#94a3b8" font-size="8">Security / x402</text>
+        <rect x="950" y="128" width="16" height="10" rx="2" fill="rgba(251, 146, 60, 0.3)" stroke="#fb923c" stroke-width="1"/>
+        <text x="972" y="136" fill="#94a3b8" font-size="8">P2P / AXL</text>
+        <line x1="950" y1="148" x2="966" y2="148" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="972" y="151" fill="#94a3b8" font-size="8">Stretch Goal</text>
+      </svg>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot amber"></div>
+          <h3>0G Compute + Storage</h3>
+        </div>
+        <ul>
+          <li>• TEE-verified inference (Intel TDX / NVIDIA H200)</li>
+          <li>• 3 independent AI models: Qwen, DeepSeek, GLM-5</li>
+          <li>• TeeTLS for authentic API routing</li>
+          <li>• 0G Storage: KV store + file storage for reports</li>
+          <li>• Published as @proof-of-thought/core library</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot orange"></div>
+          <h3>Gensyn AXL P2P</h3>
+        </div>
+        <ul>
+          <li>• Separate AXL nodes (port 9002, 9003)</li>
+          <li>• GossipSub for agent discovery</li>
+          <li>• POST /send + /recv for coordination</li>
+          <li>• MCP Router for structured JSON-RPC</li>
+          <li>• End-to-end encryption (Yggdrasil)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot rose"></div>
+          <h3>KeeperHub + x402</h3>
+        </div>
+        <ul>
+          <li>• x402 micropayments (USDC on Base Sepolia)</li>
+          <li>• Pay-per-report access model</li>
+          <li>• Audit trails with TEE proof hashes</li>
+          <li>• Agentic wallets (kh wallet add/fund)</li>
+          <li>• DeFi plugins: Uniswap, Aave, Compound</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot cyan"></div>
+          <h3>Web Dashboard</h3>
+        </div>
+        <ul>
+          <li>• Next.js 14 + Tailwind CSS + shadcn/ui</li>
+          <li>• 5 panels: Network, Deliberation, Consensus, Report, Commerce</li>
+          <li>• TEE verification badges (green ✓)</li>
+          <li>• Real-time consensus forming animation</li>
+          <li>• x402 payment flow integration</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot emerald"></div>
+          <h3>Consensus Engine</h3>
+        </div>
+        <ul>
+          <li>• Collect TEE-signed responses from agents</li>
+          <li>• Extract claims from each response</li>
+          <li>• Cross-reference: agreement + divergence</li>
+          <li>• Produce PoT Report with proof chain</li>
+          <li>• Score: agreement_score (0.0 — 1.0)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot violet"></div>
+          <h3>Prize Targets</h3>
+        </div>
+        <ul>
+          <li>• 0G Track 1: Frameworks &amp; Tooling ($7,500)</li>
+          <li>• Gensyn: Best Use of AXL ($5,000)</li>
+          <li>• KeeperHub: Best Integration ($5,000)</li>
+          <li>• KeeperHub Feedback Bounty: $250</li>
+          <li>• Total addressable: $17,500+</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer">
+      Proof of Thought • ETHGlobal Open Agents 2026 • https://github.com/vhspace/proof-of-thought
+    </p>
+  </div>
+</body>
+</html>
